@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import CarList from "./CarList";
 
 const MAX_CARS = 3;
 const RATE_PER_BLOCK = 1;
@@ -8,25 +9,6 @@ const MAX_FEE = 4;
 const App = () => {
     const [cars, setCars] = useState([]);
     const [licensePlate, setLicensePlate] = useState('');
-
-    const CarList = ({cars, onDeparture}) => {
-        return (
-            <div>
-                {cars.length === 0 ? (
-                    <p>No cars in the garage.</p>
-                ) : (
-                    <ul>
-                        {cars.map(car => (
-                            <li>
-                                {car.licensePlate}
-                                <button onClick={() => onDeparture(car.licensePlate)}>Depart</button>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
-        );
-    };
 
 
     const handleArrival = () => {
