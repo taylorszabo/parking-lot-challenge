@@ -7,6 +7,26 @@ const App = () => {
     const [cars, setCars] = useState([]);
     const [licensePlate, setLicensePlate] = useState('');
 
+    const CarList = ({cars, onDeparture}) => {
+        return (
+            <div>
+                {cars.length === 0 ? (
+                    <p>No cars in the garage.</p>
+                ) : (
+                    <ul>
+                        {cars.map(car => (
+                            <li>
+                                {car.licensePlate}
+                                <button onClick={() => onDeparture(car.licensePlate)}>Depart</button>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        );
+    };
+
+
     const handleArrival = () => {
         if (cars.length >= MAX_CARS) {
             alert('Garage is full. Deny entry to new cars.');
@@ -35,6 +55,8 @@ const App = () => {
             </div>
             <div>
                 <h2>Current Cars</h2>
+                <CarList cars={cars} onDeparture={handleDeparture => {
+                }}/>
             </div>
         </div>
     );
