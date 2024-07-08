@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 
 const MAX_CARS = 3;
+const RATE_PER_BLOCK = 1;
+const MAX_FEE = 4;
 
 const App = () => {
     const [cars, setCars] = useState([]);
@@ -40,6 +42,17 @@ const App = () => {
         }
     };
 
+    const handleDeparture = (licensePlate) => {
+        const car = cars.find(car => car.licensePlate === licensePlate);
+        if (car) {
+            const timeSpent = new Date().getTime() - car.entryTime;
+            const timeBlocks = Math.ceil(timeSpent / 30000); // 30 seconds blocks
+            const fee = Math.min(timeBlocks * RATE_PER_BLOCK, MAX_FEE);
+            alert(`Balance owing for ${licensePlate}: $${fee}`);
+            setCars(cars.filter(car => car.licensePlate !== licensePlate));
+        }
+    };
+
     return (
         <div className="App">
             <h1>Parking Garage Management</h1>
@@ -55,8 +68,7 @@ const App = () => {
             </div>
             <div>
                 <h2>Current Cars</h2>
-                <CarList cars={cars} onDeparture={handleDeparture => {
-                }}/>
+                <CarList cars={cars} onDeparture={handleDeparture}/>
             </div>
         </div>
     );
