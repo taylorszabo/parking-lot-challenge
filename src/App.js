@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import './App.css';
 import CarList from "./CarList";
 
 export const MAX_CARS = 3;
@@ -41,24 +40,33 @@ const App = () => {
     };
 
     return (
-        <div className="App">
-            <h1>Parking Garage Management</h1>
-            <div>
-                <h2>Arrival</h2>
+        <div className="bg-blue-950 text-white min-h-screen p-4">
+            <h1 className="text-3xl font-bold text-center text-orange-600 mb-8">
+                <text className="text-white">VEHIKL</text>
+                <text className="text-orange-600">Parking Garage Management</text>
+            </h1>
+            <div className="max-w-lg mx-auto bg-white text-blue-950 p-6 rounded-lg shadow-lg">
+                <h2 className="text-2xl font-semibold mb-4">Arrival</h2>
                 <label>
-                    License Plate:
+                    <text className="text-xl font-semibold mb-4">License Plate</text>
                     <input
                         type="text"
                         value={licensePlate}
                         onChange={(e) => setLicensePlate(e.target.value)}
                         placeholder="ABCD123"
+                        className="w-full p-2 border border-blue-950 rounded mb-4"
                     />
                 </label>
-                <button onClick={handleArrival}>Enter Garage</button>
-                {error && <p className="text-red-500">{error}</p>}
+                <button
+                    onClick={handleArrival}
+                    className="bg-orange-600 text-white px-4 py-2 rounded hover:bg-blue-950 transition"
+                >
+                    Enter Garage
+                </button>
+                {error && <p className="text-red-500 mt-4">{error}</p>}
             </div>
-            <div>
-                <h2>Current Cars</h2>
+            <div className="max-w-lg mx-auto mt-8 bg-white text-blue-950 p-6 rounded-lg shadow-lg">
+                <h2 className="text-2xl font-semibold mb-4">Current Cars</h2>
                 <CarList cars={cars} onDeparture={handleDeparture}/>
             </div>
         </div>

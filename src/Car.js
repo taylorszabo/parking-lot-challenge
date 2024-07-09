@@ -27,12 +27,17 @@ const Car = ({licensePlate, entryTime, onDeparture}) => {
     };
 
     return (
-        <tr>
-            <td>{licensePlate}</td>
-            <td>{formatTime(timeSpent)}</td>
-            <td>${fee}</td>
-            <td>
-                <button onClick={() => onDeparture(licensePlate)}>Depart</button>
+        <tr className="border-b border-dark-blue text-center">
+            <td className="py-4 px-4">{licensePlate}</td>
+            <td className="py-4 px-4">{formatTime(timeSpent)}</td>
+            <td className="py-4 px-4">${fee}</td>
+            <td className="py-4 px-4">
+                <button
+                    onClick={() => onDeparture(licensePlate)}
+                    className="bg-orange-600 text-white px-4 py-2 rounded hover:bg-blue-950 transition"
+                >
+                    Depart
+                </button>
             </td>
         </tr>
     );
