@@ -6,14 +6,18 @@ const MAX_CARS = 3;
 const RATE_PER_BLOCK = 1;
 const MAX_FEE = 4;
 
+const LicensePlateRegex = /^[A-Za-z]{4}\d{3}$/;
+
 const App = () => {
     const [cars, setCars] = useState([]);
     const [licensePlate, setLicensePlate] = useState('');
-
+    const [error, setError] = useState('');
 
     const handleArrival = () => {
         if (cars.length >= MAX_CARS) {
-            alert('Garage is full. Deny entry to new cars.');
+            setError('Garage is full. Deny entry to new cars.');
+        } else if (!LicensePlateRegex.test(licensePlate)) {
+            setError('Invalid license plate. Please enter a valid Ontario license plate.');
         } else {
             const newCar = {
                 licensePlate,
@@ -21,6 +25,7 @@ const App = () => {
             };
             setCars([...cars, newCar]);
             setLicensePlate('');
+            setError('');
         }
     };
 
@@ -47,6 +52,7 @@ const App = () => {
                     placeholder="Enter license plate"
                 />
                 <button onClick={handleArrival}>Enter Garage</button>
+                {error && <p className="text-red-500">{error}</p>}
             </div>
             <div>
                 <h2>Current Cars</h2>
