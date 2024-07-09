@@ -1,4 +1,5 @@
 import React from "react";
+import Car from "./Car";
 
 const CarList = ({cars, onDeparture}) => {
     return (
@@ -6,14 +7,22 @@ const CarList = ({cars, onDeparture}) => {
             {cars.length === 0 ? (
                 <p>No cars in the garage.</p>
             ) : (
-                <ul>
+                <table>
+                    <tr>
+                        <th>License Plate</th>
+                        <th>Time</th>
+                        <th>Owes</th>
+                        <th>Submit</th>
+                    </tr>
                     {cars.map(car => (
-                        <li>
-                            {car.licensePlate}
-                            <button onClick={() => onDeparture(car.licensePlate)}>Depart</button>
-                        </li>
+                        <Car
+                            key={car.licensePlate}
+                            licensePlate={car.licensePlate}
+                            entryTime={car.entryTime}
+                            onDeparture={onDeparture}
+                        />
                     ))}
-                </ul>
+                </table>
             )}
         </div>
     );

@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import './App.css';
 import CarList from "./CarList";
 
-const MAX_CARS = 3;
-const RATE_PER_BLOCK = 1;
-const MAX_FEE = 4;
+export const MAX_CARS = 3;
+export const RATE_PER_BLOCK = 1;
+export const MAX_FEE = 4;
 
-const LicensePlateRegex = /^[A-Za-z]{4}\d{3}$/;
+const licensePlateRegex = /^[A-Za-z]{4}\d{3}$/;
 
 const App = () => {
     const [cars, setCars] = useState([]);
@@ -16,8 +16,8 @@ const App = () => {
     const handleArrival = () => {
         if (cars.length >= MAX_CARS) {
             setError('Garage is full. Deny entry to new cars.');
-        } else if (!LicensePlateRegex.test(licensePlate)) {
-            setError('Invalid license plate. Please enter a valid Ontario license plate.');
+        } else if (!licensePlateRegex.test(licensePlate)) {
+            setError('Invalid license plate. Please enter a valid Ontario license plate (ABCD123).');
         } else {
             const newCar = {
                 licensePlate,
@@ -45,12 +45,15 @@ const App = () => {
             <h1>Parking Garage Management</h1>
             <div>
                 <h2>Arrival</h2>
-                <input
-                    type="text"
-                    value={licensePlate}
-                    onChange={(e) => setLicensePlate(e.target.value)}
-                    placeholder="Enter license plate"
-                />
+                <label>
+                    License Plate:
+                    <input
+                        type="text"
+                        value={licensePlate}
+                        onChange={(e) => setLicensePlate(e.target.value)}
+                        placeholder="ABCD123"
+                    />
+                </label>
                 <button onClick={handleArrival}>Enter Garage</button>
                 {error && <p className="text-red-500">{error}</p>}
             </div>
