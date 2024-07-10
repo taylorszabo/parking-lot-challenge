@@ -32,7 +32,7 @@ const App = () => {
         const car = cars.find(car => car.licensePlate === licensePlate);
         if (car) {
             const timeSpent = new Date().getTime() - car.entryTime;
-            const timeBlocks = Math.ceil(timeSpent / 30000); // 30 seconds blocks
+            const timeBlocks = Math.ceil(timeSpent / 30000);
             const fee = Math.min(timeBlocks * RATE_PER_BLOCK, MAX_FEE);
             alert(`Balance owing for ${licensePlate}: $${fee}`);
             setCars(cars.filter(car => car.licensePlate !== licensePlate));

@@ -9,7 +9,7 @@ const Car = ({licensePlate, entryTime, onDeparture}) => {
         const interval = setInterval(() => {
             const now = new Date().getTime();
             const timeSpent = now - entryTime;
-            const timeBlocks = Math.max(Math.ceil((timeSpent - 30000) / 30000), 0);
+            const timeBlocks = Math.ceil(timeSpent / 30000);
             const fee = Math.min(timeBlocks * RATE_PER_BLOCK, MAX_FEE);
 
             setTimeSpent(timeSpent);
