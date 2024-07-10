@@ -42,7 +42,7 @@ const App = () => {
     return (
         <div className="bg-blue-950 text-white min-h-screen p-4">
             <h1 className="text-3xl font-bold text-center text-orange-600 mb-8">
-                <text className="text-white">VEHIKL</text>
+                <text className="text-white">VEHIKL&nbsp;</text>
                 <text className="text-orange-600">Parking Garage Management</text>
             </h1>
             <div className="max-w-lg mx-auto bg-white text-blue-950 p-6 rounded-lg shadow-lg">
